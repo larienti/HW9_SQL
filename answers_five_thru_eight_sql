@@ -1,0 +1,214 @@
+
+I used sqlite terminal to convert csv files to sql files. 
+(More later)
+
+
+Last login: Wed Apr 15 17:44:42 on ttys001
+/Users/lars/Downloads/sqlite-tools-osx-x86-3310100/sqlite3 ; exit;
+(base) Larss-MacBook-Air:~ lars$ /Users/lars/Downloads/sqlite-tools-osx-x86-3310100/sqlite3 ; exit;
+SQLite version 3.31.1 2020-01-27 19:55:54
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .mode csv
+sqlite> .help
+.archive ...             Manage SQL archives
+.auth ON|OFF             Show authorizer callbacks
+.backup ?DB? FILE        Backup DB (default "main") to FILE
+.bail on|off             Stop after hitting an error.  Default OFF
+.binary on|off           Turn binary output on or off.  Default OFF
+.cd DIRECTORY            Change the working directory to DIRECTORY
+.changes on|off          Show number of rows changed by SQL
+.check GLOB              Fail if output since .testcase does not match
+.clone NEWDB             Clone data into NEWDB from the existing database
+.databases               List names and files of attached databases
+.dbconfig ?op? ?val?     List or change sqlite3_db_config() options
+.dbinfo ?DB?             Show status information about the database
+.dump ?TABLE? ...        Render all database content as SQL
+.echo on|off             Turn command echo on or off
+.eqp on|off|full|...     Enable or disable automatic EXPLAIN QUERY PLAN
+.excel                   Display the output of next command in spreadsheet
+.exit ?CODE?             Exit this program with return-code CODE
+.expert                  EXPERIMENTAL. Suggest indexes for queries
+.explain ?on|off|auto?   Change the EXPLAIN formatting mode.  Default: auto
+.filectrl CMD ...        Run various sqlite3_file_control() operations
+.fullschema ?--indent?   Show schema and the content of sqlite_stat tables
+.headers on|off          Turn display of headers on or off
+.help ?-all? ?PATTERN?   Show help text for PATTERN
+.import FILE TABLE       Import data from FILE into TABLE
+.imposter INDEX TABLE    Create imposter table TABLE on index INDEX
+.indexes ?TABLE?         Show names of indexes
+.limit ?LIMIT? ?VAL?     Display or change the value of an SQLITE_LIMIT
+.lint OPTIONS            Report potential schema issues.
+.load FILE ?ENTRY?       Load an extension library
+.log FILE|off            Turn logging on or off.  FILE can be stderr/stdout
+.mode MODE ?TABLE?       Set output mode
+.nullvalue STRING        Use STRING in place of NULL values
+.once (-e|-x|FILE)       Output for the next SQL command only to FILE
+.open ?OPTIONS? ?FILE?   Close existing database and reopen FILE
+.output ?FILE?           Send output to FILE or stdout if FILE is omitted
+.parameter CMD ...       Manage SQL parameter bindings
+.print STRING...         Print literal STRING
+.progress N              Invoke progress handler after every N opcodes
+.prompt MAIN CONTINUE    Replace the standard prompts
+.quit                    Exit this program
+.read FILE               Read input from FILE
+.recover                 Recover as much data as possible from corrupt db.
+.restore ?DB? FILE       Restore content of DB (default "main") from FILE
+.save FILE               Write in-memory database into FILE
+.scanstats on|off        Turn sqlite3_stmt_scanstatus() metrics on or off
+.schema ?PATTERN?        Show the CREATE statements matching PATTERN
+.selftest ?OPTIONS?      Run tests defined in the SELFTEST table
+.separator COL ?ROW?     Change the column and row separators
+.sha3sum ...             Compute a SHA3 hash of database content
+.shell CMD ARGS...       Run CMD ARGS... in a system shell
+.show                    Show the current values for various settings
+.stats ?on|off?          Show stats or turn stats on or off
+.system CMD ARGS...      Run CMD ARGS... in a system shell
+.tables ?TABLE?          List names of tables matching LIKE pattern TABLE
+.testcase NAME           Begin redirecting output to 'testcase-out.txt'
+.testctrl CMD ...        Run various sqlite3_test_control() operations
+.timeout MS              Try opening locked tables for MS milliseconds
+.timer on|off            Turn SQL timer on or off
+.trace ?OPTIONS?         Output each SQL statement as it is run
+.vfsinfo ?AUX?           Information about the top-level VFS
+.vfslist                 List all available VFSes
+.vfsname ?AUX?           Print the name of the VFS stack
+.width NUM1 NUM2 ...     Set column widths for "column" mode
+sqlite> /lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/departments.csv departments
+sqlite> .schema departments
+CREATE TABLE departments(
+  "dept_no" TEXT,
+  "dept_name" TEXT
+);
+sqlite> .save departments
+sqlite> .schema departments
+CREATE TABLE departments(
+  "dept_no" TEXT,
+  "dept_name" TEXT
+);
+sqlite> .save departments.sql
+sqlite> .schema departments
+CREATE TABLE departments(
+  "dept_no" TEXT,
+  "dept_name" TEXT
+);
+sqlite> .import /Users/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/dept_emp.csv
+Usage: .import FILE TABLE
+sqlite> 
+sqlite> /Users/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/dept_emp.csv debt_emp
+sqlite> .schema debt_emp
+CREATE TABLE debt_emp(
+  "emp_no" TEXT,
+  "dept_no" TEXT,
+  "from_date" TEXT,
+  "to_date" TEXT
+);
+sqlite> /Users/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/dept_emp.csv dept_emp
+.sqlite> .schemas dept_emp
+Error: unknown command or invalid arguments:  "schemas". Enter ".help" for help
+sqlite> .schema dept_emp
+CREATE TABLE dept_emp(
+  "emp_no" TEXT,
+  "dept_no" TEXT,
+  "from_date" TEXT,
+  "to_date" TEXT
+);
+sqlite> .save dept_emp.csv
+sqlite> .save dept_emp.sql
+sqlite> ars/Documents/GitHub/HW9_SQL/HW9_SQL/data/dept_manager.csv dept_manager
+sqlite> .schema dept_manager
+CREATE TABLE dept_manager(
+  "dept_no" TEXT,
+  "emp_no" TEXT,
+  "from_date" TEXT,
+  "to_date" TEXT
+);
+sqlite> .save dept_manager.sql
+sqlite> sers/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/employees.csv employees
+.sqlite> .schema employees
+CREATE TABLE employees(
+  "emp_no" TEXT,
+  "birth_date" TEXT,
+  "first_name" TEXT,
+  "last_name" TEXT,
+  "gender" TEXT,
+  "hire_date" TEXT
+);
+sqlite> .save employees.sql
+sqlite> /Users/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/salaries.csv salaries
+sqlite> .schema salaries
+CREATE TABLE salaries(
+  "emp_no" TEXT,
+  "salary" TEXT,
+  "from_date" TEXT,
+  "to_date" TEXT
+);
+sqlite> .save salaries.sql
+sqlite> ort /Users/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/titles.csv titles
+.sqlite> .schema titles
+CREATE TABLE titles(
+  "emp_no" TEXT,
+  "title" TEXT,
+  "from_date" TEXT,
+  "to_date" TEXT
+);
+sqlite> .save titles.sql
+sqlite> 
+
+
+
+
+
+
+
+I then had to check to see if I got the whole database or just the schema, so I used dump
+
+sqlite> .read /Users/lars/Documents/GitHub/HW9_SQL/HW9_SQL/data departments.sql
+Usage: .read FILE
+sqlite> /lars/Documents/GitHub/HW9_SQL/HW9_SQL/data/departments.sql departments
+sqlite> .read departments
+Error: near line 1: near "SQLite": syntax error
+sqlite> .show
+        echo: off
+         eqp: off
+     explain: auto
+     headers: off
+        mode: list
+   nullvalue: ""
+      output: stdout
+colseparator: "|"
+rowseparator: "\n"
+       stats: off
+       width: 
+    filename: :memory:
+sqlite> .databases
+main: 
+sqlite> .open departments
+sqlite> .databases
+main: /Users/lars/departments
+sqlite> .dump departments
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE departments(
+  "dept_no" TEXT,
+  "dept_name" TEXT
+);
+INSERT INTO departments VALUES('d001','Marketing');
+INSERT INTO departments VALUES('d002','Finance');
+INSERT INTO departments VALUES('d003','Human Resources');
+INSERT INTO departments VALUES('d004','Production');
+INSERT INTO departments VALUES('d005','Development');
+INSERT INTO departments VALUES('d006','Quality Management');
+INSERT INTO departments VALUES('d007','Sales');
+INSERT INTO departments VALUES('d008','Research');
+INSERT INTO departments VALUES('d009','Customer Service');
+COMMIT;
+sqlite> 
+
+
+
+
+
+
+
